@@ -14,13 +14,13 @@ Spree::Order.class_eval do
       cutoff = Time.zone.now.change(:hour => 16, :min => 00) # Gets 4pm in EST time zone (config.time_zone)
 
       if [0, 1, 7].include?(delivery_date.wday)
-        errors.add(:delivery_date, "cannot be a Sunday or Monday.")
+        errors.add(:base, "cannot be a Sunday or Monday.")
       end
 
       if cutoff.past? && !(delivery_date > Date.tomorrow)
-        errors.add(:delivery_date, ": It is too late for delivery tomorrow. Please specify a date after tomorrow.")
+        errors.add(:base, ": It is too late for delivery tomorrow. Please specify a date after tomorrow.")
       elsif !cutoff.past? && !(delivery_date > Date.today)
-        errors.add(:delivery_date, ": It is too late for delivery today. Please specify a date tomorrow or later.")
+        errors.add(:base, ": It is too late for delivery today. Please specify a date tomorrow or later.")
       end
     end
   end
