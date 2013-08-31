@@ -16,11 +16,12 @@ Spree::Order.class_eval do
       if [0, 1, 7].include?(delivery_date.wday)
         errors.add(:base, "cannot be a Sunday or Monday.")
       end
-
-      if cutoff.past? && !(delivery_date > Date.tomorrow)
-        errors.add(:base, ": It is too late for delivery tomorrow. Please specify a date after tomorrow.")
-      elsif !cutoff.past? && !(delivery_date > Date.today)
-        errors.add(:base, ": It is too late for delivery today. Please specify a date tomorrow or later.")
+      
+      d = Date.Today
+      d + 3
+      
+      if cutoff.past? && !(delivery_date > d)
+        errors.add(:base, "配送日には本日の4日後以降の日付を指定してください")
       end
     end
   end
