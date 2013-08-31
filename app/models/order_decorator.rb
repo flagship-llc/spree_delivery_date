@@ -17,7 +17,7 @@ Spree::Order.class_eval do
     #    errors.add(:base, "cannot be a Sunday or Monday.")
     #  end
       
-      d = Date.Today
+      d = Date.today
       d + 3
       
       if cutoff.past? && !(delivery_date > d)
