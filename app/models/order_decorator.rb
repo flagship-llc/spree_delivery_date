@@ -18,7 +18,7 @@ Spree::Order.class_eval do
     #  end
       
       d = Date.today
-      d + 3
+      d += 3
       
       if cutoff.past? && !(delivery_date > d)
         errors.add(:base, "配送日には本日の4日後以降の日付を指定してください")
