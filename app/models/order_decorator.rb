@@ -13,9 +13,9 @@ Spree::Order.class_eval do
     if !delivery_date.blank? && ['payment', 'confirm', 'complete'].include?(state)
       cutoff = Time.zone.now.change(:hour => 16, :min => 00) # Gets 4pm in EST time zone (config.time_zone)
 
-      if [0, 1, 7].include?(delivery_date.wday)
-        errors.add(:base, "cannot be a Sunday or Monday.")
-      end
+    #  if [0, 1, 7].include?(delivery_date.wday)
+    #    errors.add(:base, "cannot be a Sunday or Monday.")
+    #  end
       
       d = Date.Today
       d + 3
